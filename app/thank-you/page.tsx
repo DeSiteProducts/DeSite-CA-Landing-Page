@@ -108,16 +108,16 @@ export default async function ThankYouPage({ searchParams }: ThankYouPageProps) 
             ) : null}
             <p className="mt-4 text-lg text-[#E0E3E8]">
               Our team will review your request and contact you soon from +1
-              (806) 500-3915 with your shipping details and next steps.
+              (877) 254-7903 with your shipping details and next steps.
             </p>
           </>
         )}
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="tel:+18065003915"
+            href="tel:+18772547903"
             className="inline-flex rounded-lg bg-[#2674F0] px-7 py-3 text-lg font-semibold uppercase tracking-wide transition hover:bg-[#5693F3]"
           >
-            Call +1 (806) 500-3915
+            Call +1 (877) 254-7903
           </a>
           <Link
             href="/"

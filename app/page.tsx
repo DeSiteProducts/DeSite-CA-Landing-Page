@@ -949,7 +949,7 @@ export default function Home() {
             onClick={trackCallClick}
             className="mt-6 inline-flex rounded-full bg-[#2674F0] px-7 py-3 text-sm font-semibold uppercase tracking-wide transition hover:bg-[#5693F3]"
           >
-            CALL 1 (877) 254-7903
+            CALL +1(877) 254-7903
           </a>
         </section>
       </section>

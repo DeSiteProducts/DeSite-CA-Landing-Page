@@ -4,6 +4,9 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://desiteproducts.com"),
+  verification: {
+    google: "wusQKcmsXCc3Wb-gb8KEf7fneaztAkaM_Fej3sEL2tM",
+  },
   title: {
     default: "Topsoil & Rock Screeners | DeSite Products",
     template: "%s | DeSite Products",
@@ -47,7 +50,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gaId = "G-VDTWZD2082";
+  const gaId = "G-NR2WBDWFCE";
   const gtmId = "GTM-PX6HFKVL";
   const metaPixelId = "2030654847372180";
   const organizationJsonLd = {
@@ -63,7 +66,37 @@ export default function RootLayout({
     <html lang="en">
 
       <body className="antialiased">
-       
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag(){
+            dataLayer.push(arguments);
+          }
+
+          gtag('js', new Date());
+          gtag('config', '${gaId}');
+        `}
+        </Script>
+        {/* Microsoft Clarity */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);
+              t.async=1;
+              t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];
+              y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "y94yr3hjt0");
+          `}
+        </Script>
 
         {children}
       </body>
