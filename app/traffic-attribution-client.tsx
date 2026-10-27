@@ -1,7 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { attributionFields, getVisitAttribution } from "./traffic-attribution";
+
+// Attribution is immutable for this visit. React reads it again on hydration
+// and keeps the hidden inputs controlled across wizard re-renders.
+const subscribe = () => () => {};
+const getServerSnapshot = () => null;
 
 export function TrafficAttributionTracker() {
   useEffect(() => { getVisitAttribution(); }, []);
@@ -9,17 +14,12 @@ export function TrafficAttributionTracker() {
 }
 
 export function TrafficAttributionFields() {
-  const container = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const attribution = getVisitAttribution();
-    for (const field of attributionFields) {
-      const input = container.current?.querySelector<HTMLInputElement>(`input[name="${field}"]`);
-      if (input) input.value = attribution[field];
-    }
-  }, []);
+  const attribution = useSyncExternalStore(subscribe, getVisitAttribution, getServerSnapshot);
   return (
-    <div ref={container} hidden>
-      {attributionFields.map((field) => <input key={field} type="hidden" name={field} defaultValue="" />)}
+    <div hidden>
+      {attributionFields.map((field) => (
+        <input key={field} type="hidden" name={field} value={attribution?.[field] ?? ""} readOnly />
+      ))}
     </div>
   );
 }
