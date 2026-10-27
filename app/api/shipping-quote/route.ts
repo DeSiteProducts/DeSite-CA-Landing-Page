@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { normalizeAttribution } from "../../traffic-attribution";
 
 import {
   EMAIL_REGEX,
@@ -78,6 +79,8 @@ function escapeHtml(value: string): string {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
+    const attribution = normalizeAttribution(Object.fromEntries(formData));
+    attribution.trafficSource ||= "unknown";
 
     const vibrationNeeded = toStringValue(formData.get("vibrationNeeded"));
     const bucketWidthRange = toStringValue(formData.get("bucketWidthRange"));
@@ -156,7 +159,8 @@ export async function POST(request: Request) {
         country,
         financing,
         consent,
-        discountCode
+        discountCode,
+        ...attribution,
       }),
     });
 

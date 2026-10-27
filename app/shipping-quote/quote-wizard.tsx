@@ -2,6 +2,7 @@
 
 import type { FormEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";
+import { TrafficAttributionFields } from "../traffic-attribution-client";
 import {
   BUCKET_WIDTH_OPTIONS,
   COUNTRY_OPTIONS,
@@ -238,6 +239,7 @@ export default function QuoteWizard({ initialModel, isError }: QuoteWizardProps)
             onSubmit={handleSubmit}
             className="flex min-h-[560px] flex-col p-6 md:p-10"
           >
+            <TrafficAttributionFields />
             <input type="hidden" name="vibrationNeeded" value={formState.vibrationNeeded} />
             <input type="hidden" name="bucketWidthRange" value={formState.bucketWidthRange} />
             <input type="hidden" name="leadTime" value={formState.leadTime} />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { TrafficAttributionTracker } from "./traffic-attribution-client";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://desiteproducts.com"),
@@ -66,6 +67,7 @@ export default function RootLayout({
     <html lang="en">
 
       <body className="antialiased">
+        <TrafficAttributionTracker />
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
