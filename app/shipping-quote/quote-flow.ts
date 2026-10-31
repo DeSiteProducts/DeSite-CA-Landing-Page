@@ -37,6 +37,12 @@ export type Recommendation = {
   requiresReview: boolean;
 };
 
+export function getRecommendedModelNames(model: string): string[] {
+  return /^(108|78|68) ProScreen$/.test(model)
+    ? [model, `${model} Galvanized`]
+    : [model];
+}
+
 export function isVibrationNeeded(value: string): value is VibrationNeeded {
   return VIBRATION_OPTIONS.includes(value as VibrationNeeded);
 }
@@ -152,7 +158,7 @@ export function getInitialAnswersFromModel(model: string | undefined): {
   vibrationNeeded: VibrationNeeded | "";
   bucketWidthRange: BucketWidthRange | "";
 } {
-  const selectedModel = model ?? "";
+  const selectedModel = (model ?? "").replace(/ Galvanized$/, "");
   const modelDefaults: Record<
     string,
     { vibrationNeeded: VibrationNeeded; bucketWidthRange: BucketWidthRange }

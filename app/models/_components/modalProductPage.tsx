@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { galvanizedModels } from "../galvanized-models";
 
 type MachineImage = {
     src: string;
@@ -22,6 +23,11 @@ type MachineModelModalProps = {
 
 // Aquí relacionas cada modelo con sus imágenes y bucket.
 const machineModels: Record<string, MachineModelData> = {
+    ...Object.fromEntries(galvanizedModels.map((model) => [model.name, {
+        model: model.name,
+        bucketSize: `Design For Buckets Up To ${model.bucket} inches`,
+        images: model.images.map((src, index) => ({ src, alt: `${model.name} photo ${index + 1}` })),
+    }])),
     "108 ProScreen": {
         model: "108 ProScreen",
         bucketSize: "Design For Buckets Up To 108 inches",
@@ -467,6 +473,9 @@ export default function MachineModelModal({
                     </div>
 
                     {/* IMAGE GALLERY */}
+                    {machine.images.length === 0 && (
+                        <p className="py-12 text-center text-xl text-white/80">Photos coming soon</p>
+                    )}
                     <div className="mx-auto mt-8 w-full">
                         <div
                             className={`grid grid-cols-1 gap-4 ${!isMobile ? "md:grid-cols-4" : ""

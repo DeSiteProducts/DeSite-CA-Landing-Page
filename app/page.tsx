@@ -8,6 +8,8 @@ import ShippingQuoteButton from "./models/_components/ShippingQuoteButton";
 import DeferredShippingQuoteSection from "./models/_components/DeferredShippingQuoteSection";
 import ImageSlider from "./models/_components/ImageSlider";
 import Link from "next/link";
+import BlackFridayCountdown from "./black-friday-countdown";
+import GalvanizedCards from "./models/_components/GalvanizedCards";
 
 
 const MachineModelModal = dynamic(
@@ -288,6 +290,8 @@ export default function Home() {
   };
 
   return (
+    <>
+    <BlackFridayCountdown />
     <main className="min-h-screen bg-gradient-to-b from-[#03122B] via-[#073073] to-[#082F72] px-6 py-12 text-white md:px-12">
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12">
         <div className="rounded-3xl border border-white/15 bg-white/8 p-8 backdrop-blur-sm md:p-12">
@@ -324,6 +328,7 @@ export default function Home() {
         </div>
 
         <section id="modelos" className="grid grid-cols-1 gap-6 md:grid-cols-1">
+          <GalvanizedCards />
           <article className="rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
             {/* TOP: VIDEO + MACHINE INFO */}
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -548,7 +553,7 @@ export default function Home() {
             {/* MIDDLE: EQUIPMENT IMAGE SLIDER */}
             <div className="mt-10">
               <p className=" mt-4 text-center text-xl font-bold uppercase tracking-[0.14em] text-[#E0E3E8]">
-                DESIGNED FOR MINI SIZED EQUIPMENT
+                DESIGNED FOR COMPACT EQUIPMENT
               </p>
 
               <div className="">
@@ -576,7 +581,8 @@ export default function Home() {
         <section id="modelos" className="grid grid-cols-1 gap-6 md:grid-cols-1">
 
 
-          <article className="rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+          <article className="sale-card rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+            <div className="sale-ribbon"><span>ON SALE</span></div>
             {/* TOP: VIDEO + MACHINE INFO */}
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
 
@@ -600,7 +606,11 @@ export default function Home() {
                 </p>
 
                 <p className="mt-3 text-center text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                  $14,500 CAD
+                  <span className="sr-only">Sale price: </span>$13,000 CAD
+                </p>
+                <p className="mt-2 text-center text-2xl font-semibold text-white/75 md:text-3xl">
+                  <span className="sr-only">Original price: </span>
+                  <del>$14,500 CAD</del>
                 </p>
                 {/* BOTTOM: 2 COLUMNS FOR BUTTONS */}
                 <div className=" grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-2">
@@ -656,7 +666,8 @@ export default function Home() {
 
           </article>
 
-          <article className="rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+          <article className="sale-card rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+            <div className="sale-ribbon"><span>ON SALE</span></div>
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
 
               {/* LEFT: VIDEO SLIDER */}
@@ -679,7 +690,11 @@ export default function Home() {
                 </p>
 
                 <p className="mt-3 text-center text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                  $8,500 CAD
+                  <span className="sr-only">Sale price: </span>$7,600 CAD
+                </p>
+                <p className="mt-2 text-center text-2xl font-semibold text-white/75 md:text-3xl">
+                  <span className="sr-only">Original price: </span>
+                  <del>$8,500 CAD</del>
                 </p>
                 {/* BOTTOM: 2 COLUMNS FOR BUTTONS */}
                 <div className=" grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-2">
@@ -732,7 +747,8 @@ export default function Home() {
 
           </article>
 
-          <article className="rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+          <article className="sale-card rounded-3xl border border-[#2674F0] bg-gradient-to-b from-[#2674F0] to-[#082F72] p-6 text-white shadow-xl shadow-[#03122B]/40">
+            <div className="sale-ribbon"><span>ON SALE</span></div>
             {/* TOP: VIDEO + MACHINE INFO */}
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
 
@@ -756,7 +772,11 @@ export default function Home() {
                 </p>
 
                 <p className="mt-3 text-center text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                 $4,700 CAD
+                  <span className="sr-only">Sale price: </span>$4,200 CAD
+                </p>
+                <p className="mt-2 text-center text-2xl font-semibold text-white/75 md:text-3xl">
+                  <span className="sr-only">Original price: </span>
+                  <del>$4,700 CAD</del>
                 </p>
                 {/* BOTTOM: 2 COLUMNS FOR BUTTONS */}
                 <div className=" grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-2">
@@ -960,5 +980,6 @@ export default function Home() {
         model={selectedMachineModel}
       />
     </main>
+    </>
   );
 }

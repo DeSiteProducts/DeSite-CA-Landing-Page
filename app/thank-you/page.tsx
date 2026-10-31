@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LeadConversionEvents from "./conversion-events";
+import { getRecommendedModelNames } from "../shipping-quote/quote-flow";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -99,7 +100,9 @@ export default async function ThankYouPage({ searchParams }: ThankYouPageProps) 
               Based on your answers, the best recommended model for you is:
             </p>
             <p className="mt-5 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-2xl font-extrabold text-white">
-              {leadData.recommendedModel || "Pending review"}
+              {getRecommendedModelNames(leadData.recommendedModel || "Pending review").map((model) => (
+                <span key={model} className="block">{model}</span>
+              ))}
             </p>
             {leadData.recommendationNote ? (
               <p className="mt-3 text-lg text-[#E0E3E8]">
